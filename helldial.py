@@ -58,16 +58,22 @@ def validator(n):
         return False
 
 
+def setup():
+    genTarget()
+    random.shuffle(dialarray)
+
+
+def debugprinter():
+    print(target)
+    print(numberLint(target))
+    print(dialarray)
+
 def main():
     global target
     global dialarray
 
-    genTarget()
-    random.shuffle(dialarray)
-
-    print(target)
-    print(numberLint(target))
-    print(dialarray)
+    setup()
+    debugprinter()
 
     dial()
     print(userIn)
