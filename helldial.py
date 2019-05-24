@@ -1,6 +1,11 @@
 import random
+import time
+from os import system, name
 
 target = ""
+dialarray = [
+    '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'
+]
 
 def genTarget():
     global target
@@ -16,11 +21,25 @@ def numberLint(num):
     lintx += num[6:10]
     return lintx
 
+
+def clear():
+    # for windows
+    if name == 'nt':
+        _ = system('cls')
+
+        # for mac and linux(here, os.name is 'posix')
+    else:
+        _ = system('clear')
+
 def main():
     global target
+    global dialarray
     genTarget()
+    random.shuffle(dialarray)
     print(target)
     print(numberLint(target))
+    print(dialarray)
+
 
 if __name__ == '__main__':
     main()
