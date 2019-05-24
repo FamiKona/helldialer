@@ -7,6 +7,8 @@ dialarray = [
     '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'
 ]
 
+userIn = ""
+
 def sleep(n):
     time.sleep(n)
 
@@ -34,6 +36,21 @@ def clear():
     else:
         _ = system('clear')
 
+def dial():
+    global userIn
+    n = str(input())
+    if validator(n):
+        userIn += dialarray[int(n)]
+    else:
+        print("please input a valid digit")
+        dial()
+
+def validator(n):
+    if str(n) in dialarray:
+        return True
+    else:
+        return False
+
 def main():
     global target
     global dialarray
@@ -42,6 +59,8 @@ def main():
     print(target)
     print(numberLint(target))
     print(dialarray)
+    dial()
+    print(userIn)
     # sleep(3)
     # clear()
 
