@@ -21,7 +21,7 @@ def numberLint(num):
     lintx += num[6:10]
     return lintx
 
-
+# from https://www.geeksforgeeks.org/clear-screen-python/
 def clear():
     # for windows
     if name == 'nt':
