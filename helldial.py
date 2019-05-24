@@ -7,6 +7,9 @@ dialarray = [
     '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'
 ]
 
+def sleep(n):
+    time.sleep(n)
+
 def genTarget():
     global target
     for x in range(0, 10):
@@ -39,6 +42,9 @@ def main():
     print(target)
     print(numberLint(target))
     print(dialarray)
+    # sleep(3)
+    # clear()
+
 
 
 if __name__ == '__main__':
