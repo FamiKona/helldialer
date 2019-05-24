@@ -9,14 +9,17 @@ dialarray = [
 
 userIn = ""
 
+
 def sleep(n):
     time.sleep(n)
+
 
 def genTarget():
     global target
     for x in range(0, 10):
         n = random.randint(0,9)
         target += str(n)
+
 
 def numberLint(num):
     lintx = ""
@@ -25,6 +28,7 @@ def numberLint(num):
     lintx += num[3:6] + "-"
     lintx += num[6:10]
     return lintx
+
 
 # from https://www.geeksforgeeks.org/clear-screen-python/
 def clear():
@@ -36,6 +40,7 @@ def clear():
     else:
         _ = system('clear')
 
+
 def dial():
     global userIn
     n = str(input())
@@ -45,25 +50,29 @@ def dial():
         print("please input a valid digit")
         dial()
 
+
 def validator(n):
     if str(n) in dialarray:
         return True
     else:
         return False
 
+
 def main():
     global target
     global dialarray
+
     genTarget()
     random.shuffle(dialarray)
+
     print(target)
     print(numberLint(target))
     print(dialarray)
+
     dial()
     print(userIn)
     # sleep(3)
     # clear()
-
 
 
 if __name__ == '__main__':
