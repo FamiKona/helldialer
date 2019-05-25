@@ -21,11 +21,7 @@ def genTarget():
 
 def numberLint(num):
     spaced_num = num + "??????????"
-    lintx = ""
-    lintx += "("
-    lintx += spaced_num[0:3] + ") "
-    lintx += spaced_num[3:6] + "-"
-    lintx += spaced_num[6:10]
+    lintx =  "(" + spaced_num[0:3] + ") " + spaced_num[3:6] + "-" + spaced_num[6:10]
     return lintx
 
 
