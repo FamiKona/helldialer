@@ -12,7 +12,7 @@ def main():
     clear()
     setup()
     presenttarget()
-    debugarray()
+    #debugarray()
 
     thegame()
 
@@ -112,7 +112,7 @@ def wincheck():
     global userIn
     global target
 
-    return target is userIn
+    return target == userIn
 
 def winstate():
     global userIn
