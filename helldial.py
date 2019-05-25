@@ -68,6 +68,21 @@ def debugprinter():
     print(numberLint(target))
     print(dialarray)
 
+def thegame():
+    global userIn
+    global dialarray
+
+    digit = getin()
+    userIn += dialarray[int(digit)]
+
+def getin():
+    inp = str(input())
+    if validator(inp):
+        return inp
+    else:
+        print("Please input a valid single digit.\n")
+        return getin()
+
 def main():
     global target
     global dialarray
