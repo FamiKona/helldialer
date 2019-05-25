@@ -94,8 +94,7 @@ def checkcorrect():
     global userIn
     global target
 
-    length = len(userIn)
-    return userIn is target[0:length]
+    return target.startswith(userIn)
 
 def lossstate():
     global userIn
