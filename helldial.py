@@ -3,9 +3,7 @@ import time
 from os import system, name
 
 target = ""
-dialarray = [
-    '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'
-]
+dialarray = list("0123456789")
 
 userIn = ""
 
@@ -22,12 +20,14 @@ def genTarget():
 
 
 def numberLint(num):
+    spaced_num = num + "??????????"
     lintx = ""
     lintx += "("
-    lintx += num[0:3] + ") "
-    lintx += num[3:6] + "-"
-    lintx += num[6:10]
+    lintx += spaced_num[0:3] + ") "
+    lintx += spaced_num[3:6] + "-"
+    lintx += spaced_num[6:10]
     return lintx
+
 
 
 # from https://www.geeksforgeeks.org/clear-screen-python/
@@ -68,12 +68,14 @@ def debugprinter():
     print(numberLint(target))
     print(dialarray)
 
+
 def thegame():
     global userIn
     global dialarray
 
     digit = getin()
     userIn += dialarray[int(digit)]
+
 
 def getin():
     inp = str(input())
@@ -83,12 +85,14 @@ def getin():
         print("Please input a valid single digit.\n")
         return getin()
 
+
 def main():
     global target
     global dialarray
 
     setup()
     debugprinter()
+    print(numberLint("69"))
 
     dial()
     print(userIn)
