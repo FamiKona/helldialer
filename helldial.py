@@ -8,6 +8,32 @@ dialarray = list("0123456789")
 userIn = ""
 
 
+def main():
+    clear()
+    setup()
+    presenttarget()
+    debugarray()
+
+    thegame()
+
+
+def thegame():
+    global userIn
+    global dialarray
+    global target
+
+    dial()
+    if wincheck():
+        winstate()
+    if checkcorrect():
+        print(numberLint(target))
+        print(numberLint(userIn))
+        thegame()
+    else:
+        lossstate()
+        presenttarget()
+        thegame()
+
 def sleep(n):
     time.sleep(n)
 
@@ -44,7 +70,7 @@ def dial():
         userIn += dialarray[int(n)]
     else:
         print("please input a valid digit")
-        dial()
+        return dial()
 
 
 def validator(n):
@@ -59,41 +85,47 @@ def setup():
     random.shuffle(dialarray)
 
 
-def debugprinter():
-    print(target)
-    print(numberLint(target))
-    print(dialarray)
+def presenttarget():
+    print("please dial " + numberLint(target))
 
 
-def thegame():
+def checkcorrect():
+    global dialarray
     global userIn
-    global dialarray
-
-    digit = getin()
-    userIn += dialarray[int(digit)]
-
-
-def getin():
-    inp = str(input())
-    if validator(inp):
-        return inp
-    else:
-        print("Please input a valid single digit.\n")
-        return getin()
-
-
-def main():
     global target
-    global dialarray
 
-    setup()
-    debugprinter()
-    print(numberLint("69"))
+    length = len(userIn)
+    return userIn is target[0:length]
 
-    dial()
-    print(userIn)
-    # sleep(3)
-    # clear()
+def lossstate():
+    global userIn
+    global target
+
+    print(numberLint(target))
+    print(numberLint(userIn))
+    sleep(.3)
+    print("Incorrect, preparing to clear")
+    sleep(2)
+    userIn = ""
+    clear()
+
+def wincheck():
+    global userIn
+    global target
+
+    return target is userIn
+
+def winstate():
+    global userIn
+    global target
+
+    print(numberLint(target))
+    print(numberLint(userIn))
+    print("You win!")
+    exit()
+
+def debugarray():
+    print(dialarray)
 
 
 if __name__ == '__main__':
