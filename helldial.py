@@ -4,33 +4,40 @@ from os import system, name
 
 target = ""
 dialarray = list("0123456789")
-
 userIn = ""
+difficulty = ""
+errorcount = 0
 
 
 def main():
     clear()
     setup()
+    setdiff()
+    clear()
     presenttarget()
-    #debugarray()
+    # debugarray()
 
     thegame()
-
 
 def thegame():
     global userIn
     global dialarray
     global target
+    global difficulty
 
     dial()
     if wincheck():
         winstate()
     if checkcorrect():
+        if difficulty != "easy":
+            clear()
         print(numberLint(target))
         print(numberLint(userIn))
         thegame()
     else:
         lossstate()
+        if losslimitreached():
+            rebinder()
         presenttarget()
         thegame()
 
@@ -85,6 +92,25 @@ def setup():
     random.shuffle(dialarray)
 
 
+def setdiff():
+    global difficulty
+
+    print("Please select a difficulty:\n1: Easy, 50 attempts before rebind, no clears on correct answers\n"
+    "2: Normal, 25 attempts before rebind\n3: Hard, 15 attempts before rebind")
+
+    i = input("input the number of the difficulty you want")
+
+    if i == "1":
+        difficulty = 'easy'
+    elif i == "2":
+        difficulty = 'normal'
+    elif i == "3":
+        difficulty = 'hard'
+    else:
+        print("please input a valid digit")
+        setdiff()
+
+
 def presenttarget():
     print("please dial " + numberLint(target))
 
@@ -99,7 +125,9 @@ def checkcorrect():
 def lossstate():
     global userIn
     global target
+    global errorcount
 
+    errorcount += 1
     print(numberLint(target))
     print(numberLint(userIn))
     sleep(.3)
@@ -107,6 +135,11 @@ def lossstate():
     sleep(2)
     userIn = ""
     clear()
+    
+def rebinder():
+    global dialarray
+    print("ERROR LIMIT REACHED, REBINDING KEYS")
+    random.shuffle(dialarray)
 
 def wincheck():
     global userIn
@@ -122,6 +155,18 @@ def winstate():
     print(numberLint(userIn))
     print("You win!")
     exit()
+
+def losslimitreached():
+    global difficulty
+    global errorcount
+
+    limits = {
+        'easy': 50,
+        'normal': 25,
+        'hard': 15
+    }
+
+    return errorcount >= limits.get(difficulty)
 
 def debugarray():
     print(dialarray)
