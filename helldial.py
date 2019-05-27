@@ -1,6 +1,7 @@
 import random
 import time
 from os import system, name
+import sys
 
 target = ""
 dialarray = list("0123456789")
@@ -10,6 +11,7 @@ errorcount = 0
 
 
 def main():
+    sysvercheck()
     clear()
     setup()
     setdiff()
@@ -170,6 +172,11 @@ def losslimitreached():
 
 def debugarray():
     print(dialarray)
+
+
+def sysvercheck():
+    if sys.version[0] < "3":
+        raise Exception("bruh, you gotta have python 3+ to use this")
 
 
 if __name__ == '__main__':
