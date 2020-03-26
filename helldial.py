@@ -21,6 +21,7 @@ def main():
 
     thegame()
 
+
 def thegame():
     global userIn
     global dialarray
@@ -43,22 +44,22 @@ def thegame():
         presenttarget()
         thegame()
 
+
 def sleep(n):
     time.sleep(n)
 
 
 def genTarget():
     global target
-    for x in range(0, 10):
-        n = random.randint(0,9)
+    for _ in range(0, 10):
+        n = random.randint(0, 9)
         target += str(n)
 
 
 def numberLint(num):
     spaced_num = num + "??????????"
-    lintx =  "(" + spaced_num[0:3] + ") " + spaced_num[3:6] + "-" + spaced_num[6:10]
+    lintx = "(" + spaced_num[0:3] + ") " + spaced_num[3:6] + "-" + spaced_num[6:10]
     return lintx
-
 
 
 # from https://www.geeksforgeeks.org/clear-screen-python/
@@ -98,7 +99,7 @@ def setdiff():
     global difficulty
 
     print("Please select a difficulty:\n1: Easy, 50 attempts before rebind, no clears on correct answers\n"
-    "2: Normal, 25 attempts before rebind\n3: Hard, 15 attempts before rebind")
+          "2: Normal, 25 attempts before rebind\n3: Hard, 15 attempts before rebind")
 
     i = input("input the number of the difficulty you want")
 
@@ -124,6 +125,7 @@ def checkcorrect():
 
     return target.startswith(userIn)
 
+
 def lossstate():
     global userIn
     global target
@@ -137,17 +139,20 @@ def lossstate():
     sleep(2)
     userIn = ""
     clear()
-    
+
+
 def rebinder():
     global dialarray
     print("ERROR LIMIT REACHED, REBINDING KEYS")
     random.shuffle(dialarray)
+
 
 def wincheck():
     global userIn
     global target
 
     return target == userIn
+
 
 def winstate():
     global userIn
@@ -157,6 +162,7 @@ def winstate():
     print(numberLint(userIn))
     print("You win!")
     exit()
+
 
 def losslimitreached():
     global difficulty
@@ -169,6 +175,7 @@ def losslimitreached():
     }
 
     return errorcount >= limits.get(difficulty)
+
 
 def debugarray():
     print(dialarray)
