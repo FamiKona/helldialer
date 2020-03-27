@@ -4,59 +4,59 @@ from os import system, name
 import sys
 
 target = ""
-dialarray = list("0123456789")
+dial_array = list("0123456789")
 userIn = ""
 difficulty = ""
-errorcount = 0
+error_count = 0
 
 
 def main():
-    sysvercheck()
+    sys_ver_check()
     clear()
     setup()
-    setdiff()
+    set_diff()
     clear()
-    presenttarget()
-    # debugarray()
+    present_target()
+    # debug_array()
 
-    thegame()
+    the_game()
 
 
-def thegame():
+def the_game():
     global userIn
-    global dialarray
+    global dial_array
     global target
     global difficulty
 
     dial()
-    if wincheck():
+    if win_check():
         winstate()
-    if checkcorrect():
+    if check_correct():
         if difficulty != "easy":
             clear()
-        print(numberLint(target))
-        print(numberLint(userIn))
-        thegame()
+        print(number_lint(target))
+        print(number_lint(userIn))
+        the_game()
     else:
         lossstate()
-        if losslimitreached():
+        if loss_limit_reached():
             rebinder()
-        presenttarget()
-        thegame()
+        present_target()
+        the_game()
 
 
 def sleep(n):
     time.sleep(n)
 
 
-def genTarget():
+def gen_target():
     global target
     for _ in range(0, 10):
         n = random.randint(0, 9)
         target += str(n)
 
 
-def numberLint(num):
+def number_lint(num):
     spaced_num = num + "??????????"
     lintx = "(" + spaced_num[0:3] + ") " + spaced_num[3:6] + "-" + spaced_num[6:10]
     return lintx
@@ -77,25 +77,25 @@ def dial():
     global userIn
     n = str(input())
     if validator(n):
-        userIn += dialarray[int(n)]
+        userIn += dial_array[int(n)]
     else:
         print("please input a valid digit")
         return dial()
 
 
 def validator(n):
-    if str(n) in dialarray:
+    if str(n) in dial_array:
         return True
     else:
         return False
 
 
 def setup():
-    genTarget()
-    random.shuffle(dialarray)
+    gen_target()
+    random.shuffle(dial_array)
 
 
-def setdiff():
+def set_diff():
     global difficulty
 
     print("Please select a difficulty:\n1: Easy, 50 attempts before rebind, no clears on correct answers\n"
@@ -111,15 +111,15 @@ def setdiff():
         difficulty = 'hard'
     else:
         print("please input a valid digit")
-        setdiff()
+        set_diff()
 
 
-def presenttarget():
-    print("please dial " + numberLint(target))
+def present_target():
+    print("please dial " + number_lint(target))
 
 
-def checkcorrect():
-    global dialarray
+def check_correct():
+    global dial_array
     global userIn
     global target
 
@@ -129,11 +129,11 @@ def checkcorrect():
 def lossstate():
     global userIn
     global target
-    global errorcount
+    global error_count
 
-    errorcount += 1
-    print(numberLint(target))
-    print(numberLint(userIn))
+    error_count += 1
+    print(number_lint(target))
+    print(number_lint(userIn))
     sleep(.3)
     print("Incorrect, preparing to clear")
     sleep(2)
@@ -142,12 +142,12 @@ def lossstate():
 
 
 def rebinder():
-    global dialarray
+    global dial_array
     print("ERROR LIMIT REACHED, REBINDING KEYS")
-    random.shuffle(dialarray)
+    random.shuffle(dial_array)
 
 
-def wincheck():
+def win_check():
     global userIn
     global target
 
@@ -158,15 +158,15 @@ def winstate():
     global userIn
     global target
 
-    print(numberLint(target))
-    print(numberLint(userIn))
+    print(number_lint(target))
+    print(number_lint(userIn))
     print("You win!")
     exit()
 
 
-def losslimitreached():
+def loss_limit_reached():
     global difficulty
-    global errorcount
+    global error_count
 
     limits = {
         'easy': 50,
@@ -174,14 +174,14 @@ def losslimitreached():
         'hard': 15
     }
 
-    return errorcount >= limits.get(difficulty)
+    return error_count >= limits.get(difficulty)
 
 
-def debugarray():
-    print(dialarray)
+def debug_array():
+    print(dial_array)
 
 
-def sysvercheck():
+def sys_ver_check():
     if sys.version[0] < "3":
         raise Exception("bruh, you gotta have python 3+ to use this")
 
